@@ -1,0 +1,69 @@
+.formTableContainer {
+    display: flex; /* This makes the form and table side by side */
+    gap: 30px; /* Adds space between the form and table */
+    justify-content: space-between; /* Adjusts the alignment */
+    padding: 45px;
+  }
+  
+  .formContainer {
+    width: 25%; /* Adjust the width of the form */
+    // margin-left: 35px;
+  }
+  
+  .tableContainer {
+    width: 50%; /* Adjust the width of the table */
+    overflow-x: auto; /* Adds horizontal scrolling if needed */
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #f4f4f4;
+  }
+  
+  .image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
