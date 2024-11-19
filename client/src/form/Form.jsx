@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify"; // Import toastify
+import "react-toastify/dist/ReactToastify.css"; // Import the default CSS for styling
 import styles from "./styles.module.scss";
 
 const Form = () => {
@@ -25,13 +27,12 @@ const Form = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const data = new FormData();
     data.append("name", formData.name);
     data.append("email", formData.email);
     data.append("password", formData.password);
     data.append("file", file);
-    
 
     try {
       await axios.post("http://localhost:8800/uploadForm", data, {
@@ -39,7 +40,14 @@ const Form = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      alert("User created successfully!");
+
+      // Show success notification
+      toast.success("User created successfully!", {
+        position: "top-right", // Display at the upper right
+        autoClose: 1500, // Automatically close after 5 seconds
+        theme: "colored", // Use the default green theme for success
+      });
+
       fetchUsers(); // Fetch users after submitting
     } catch (error) {
       console.error("Error creating user:", error.response.data);
@@ -123,32 +131,34 @@ const Form = () => {
             </tr>
           </thead>
           <tbody>
-  {users.length === 0 ? (
-    <tr>
-      <td colSpan="4">No users available</td>
-    </tr>
-  ) : (
-    users.map((user) => (
-      <tr key={user._id}>
-        <td>{user.name}</td>
-        <td>{user.email}</td>
-        <td>{user.password}</td>
-        <td>
-          {user.photo && (
-            <img
-              src={`http://localhost:8800/images/${user.photo}`}
-              alt="user"
-              className={styles.image}
-            />
-          )}
-        </td>
-      </tr>
-    ))
-  )}
-</tbody>
-
+            {users.length === 0 ? (
+              <tr>
+                <td colSpan="4">No users available</td>
+              </tr>
+            ) : (
+              users.map((user) => (
+                <tr key={user._id}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.password}</td>
+                  <td>
+                    {user.photo && (
+                      <img
+                        src={`http://localhost:8800/images/${user.photo}`}
+                        alt="user"
+                        className={styles.image}
+                      />
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
         </table>
       </div>
+
+      {/* Toast container for displaying notifications */}
+      <ToastContainer />
     </div>
   );
 };
